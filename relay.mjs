@@ -1,5 +1,4 @@
-// Tally to Wix relay for the SAS form (4a7YVA). Built and tested locally only. NOT deployed, NOT pointed at Tally.
-// Default state is OFF: with relayEnabled false the relay acknowledges and does nothing else.
+// Tally to Wix relay for the SAS form (4a7YVA).
 import crypto from 'node:crypto';
 import { KEYS, scoreAnswers, renderEmail, firstNameOf, TARGET_OPTIONS, groupFor } from './sas.mjs';
 
@@ -59,7 +58,6 @@ export function readSubmission(payload) {
   for (const k of ['gender', 'jointIdx', 'pushIdx', 'verticalIdx', 'pullIdx', 'goalFocusIdx', 'knowledgeIdx']) {
     if (answers[k] == null) throw new Error(`missing answer: ${k}`);
   }
-  // The live form's calculated field has no label and its value is an object {score, group, url_base}.
   const calcField = fields.find((f) => f.type === 'CALCULATED_FIELDS');
   const calcValue = calcField ? calcField.value : null;
   const tallyScore = calcValue && typeof calcValue === 'object' ? calcValue.score ?? null : calcValue ?? null;
@@ -76,7 +74,7 @@ export function readSubmission(payload) {
   };
 }
 
-// Wix client. Endpoints are from the design (tally-build-and-relay.md Part 3) and are NOT yet verified against live Wix.
+// Wix client.
 export function wixClient({ accessToken, siteId, siteFetch = fetch, base = 'https://www.wixapis.com' }) {
   const call = async (method, path, body) => {
     const headers = {
@@ -96,14 +94,14 @@ export function wixClient({ accessToken, siteId, siteFetch = fetch, base = 'http
     }
     return r.json();
   };
+  return {
     findContactByEmail: async (email) => {
       const res = await call('POST', '/contacts/v4/contacts/query', { query: { filter: { 'info.emails.email': email } } });
       return (res.contacts || [])[0] || null;
     },
     createContact: (info) => call('POST', '/contacts/v4/contacts', { info }),
     updateContact: (id, info, revision) => call('PATCH', `/contacts/v4/contacts/${id}`, { info, revision }),
-    labelIdFor: async (key) => key, // label keys are resolved once the labels exist; see checklist
-    // Verified against Wix docs (Email Transmissions v1, Send Email Transmission): POST /email-transmissions/v1/email-transmissions/send
+    labelIdFor: async (key) => key,
     sendTransactionalEmail: ({ contactId, subject, html, senderName, senderEmailAddress, idempotencyKey }) =>
       call('POST', '/email-transmissions/v1/email-transmissions/send', {
         emailTransmission: {
@@ -117,12 +115,11 @@ export function wixClient({ accessToken, siteId, siteFetch = fetch, base = 'http
         },
         idempotencyKey,
       }),
-    // Verified against Wix docs (Contacts v4): POST /contacts/v4/labels returns label.key
     createLabel: (displayName) => call('POST', '/contacts/v4/labels', { displayName }),
   };
 }
 
-// Handles one Tally webhook delivery. deps: { signingSecret, wix, log, relayEnabled, seenEvents, labelFor, sendFrom, pagesLive }.
+// Handles one Tally webhook delivery.
 export async function handleTallyWebhook({ rawBody, signature, deps }) {
   const { signingSecret, wix, log, relayEnabled = false, seenEvents = new Set(), pagesLive = false } = deps;
   if (!verifyTallySignature(rawBody, signature, signingSecret)) {
@@ -195,6 +192,5 @@ export async function handleTallyWebhook({ rawBody, signature, deps }) {
   } catch (e) {
     log('retry', { eventId: sub.eventId, reason: 'wix', error: e.message });
     return { status: 500 };
-  }
   }
 }
