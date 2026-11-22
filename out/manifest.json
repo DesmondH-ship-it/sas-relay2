@@ -3,7 +3,7 @@
     "group": "A",
     "sample": "T-G",
     "score": 4,
-    "subject": "Your result: Women Basics is where you start",
+    "subject": "Your Assement Result: Women Basics is where you start",
     "chart": {
       "push": 10,
       "vertical": 7,
@@ -18,7 +18,7 @@
     "group": "B",
     "sample": "T-H",
     "score": 2,
-    "subject": "Your result: Basics is the right place to start",
+    "subject": "Your Assement Result: Basics is the right place to start",
     "chart": {
       "push": 0,
       "vertical": 0,
@@ -33,7 +33,7 @@
     "group": "Dual",
     "sample": "T-E",
     "score": 5,
-    "subject": "Your result: there is no rush, let us pick your classes together",
+    "subject": "Your Assement Result: there is no rush, let us pick your classes together",
     "chart": {
       "push": 7,
       "vertical": 10,
@@ -48,7 +48,7 @@
     "group": "C",
     "sample": "T-M",
     "score": 6,
-    "subject": "Your result: you are ready for Movement",
+    "subject": "Your Assement Result: you are ready for Movement",
     "chart": {
       "push": 7,
       "vertical": 7,
@@ -63,7 +63,7 @@
     "group": "D",
     "sample": "T-D",
     "score": 10,
-    "subject": "Your result: Movement is your next step",
+    "subject": "Your Assement Result: Elite Movement is your next step",
     "chart": {
       "push": 10,
       "vertical": 10,
