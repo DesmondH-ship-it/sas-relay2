@@ -161,15 +161,15 @@ export async function handleTallyWebhook({ rawBody, signature, deps }) {
       emails: { items: [{ email: sub.email, primary: true }] },
       labelKeys: labels,
     };
-    let contactId;
-    const existing = await wix.findContactByEmail(sub.email);
-    if (existing) {
-      await wix.updateContact(existing._id, info, existing.revision);
-      contactId = existing._id;
-    } else {
-      const created = await wix.createContact(info);
-      contactId = created?.contact?._id || created?._id || deps.lastCreatedContactId;
-    }
+   let contactId;
+const existing = await wix.findContactByEmail(sub.email);
+if (existing) {
+  contactId = existing.id || existing._id;
+  await wix.updateContact(contactId, info, existing.revision);
+} else {
+  const created = await wix.createContact(info);
+  contactId = created?.contact?.id || created?.contact?._id || created?.id || created?._id || deps.lastCreatedContactId;
+}
     const email = renderEmail({
       group: result.group,
       firstName: firstNameOf(sub.name),
