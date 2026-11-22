@@ -1,6 +1,4 @@
 // SAS relay server. Receives Tally webhook deliveries for form 4a7YVA and sends the result email through Wix.
-// Default state is OFF: with RELAY_ENABLED not set to 'true', every submission is acknowledged and held.
-// All secrets come from environment variables. Never paste secrets into chat.
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -13,6 +11,7 @@ const env = (name, def = '') => process.env[name] ?? def;
 const PORT = Number(env('PORT', '8080'));
 const SIGNING_SECRET = env('SIGNING_SECRET');
 const WIX_ACCESS_TOKEN = env('WIX_ACCESS_TOKEN');
+const WIX_SITE_ID = env('WIX_SITE_ID');
 const RELAY_ENABLED = env('RELAY_ENABLED') === 'true';
 const SENDER_EMAIL = env('SENDER_EMAIL', 'DesmondH@dailycalihk.com');
 const SENDER_NAME = env('SENDER_NAME', 'DAILYCALI');
@@ -47,13 +46,13 @@ const log = (event, data) => {
 const server = http.createServer(async (req, res) => {
   const send = (status, body) => { res.writeHead(status, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(body)); };
   if (req.method === 'GET' && (req.url === '/healthz' || req.url === '/')) {
-    return send(200, { ok: true, relayEnabled: RELAY_ENABLED, signingSecretSet: !!SIGNING_SECRET, wixTokenSet: !!WIX_ACCESS_TOKEN, labelsSet: !!(LABELS.A && LABELS.B && LABELS.Dual && LABELS.C && LABELS.D) });
+    return send(200, { ok: true, relayEnabled: RELAY_ENABLED, signingSecretSet: !!SIGNING_SECRET, wixTokenSet: !!WIX_ACCESS_TOKEN, wixSiteIdSet: !!WIX_SITE_ID, labelsSet: !!(LABELS.A && LABELS.B && LABELS.Dual && LABELS.C && LABELS.D) });
   }
   if (req.method === 'POST' && req.url === '/webhook') {
     const chunks = [];
     for await (const c of req) chunks.push(c);
     const rawBody = Buffer.concat(chunks).toString('utf8');
-    const wix = wixClient({ accessToken: WIX_ACCESS_TOKEN });
+    const wix = wixClient({ accessToken: WIX_ACCESS_TOKEN, siteId: WIX_SITE_ID });
     let result;
     try {
       result = await handleTallyWebhook({
@@ -77,8 +76,6 @@ const server = http.createServer(async (req, res) => {
     saveSeen();
     return send(result.status, { status: result.status, note: result.note ?? null, group: result.group ?? null });
   }
-  // One-time replay of a stored past submission (replay-darlena.json), from the owner's browser.
-  // Protected by REPLAY_KEY, which the owner sets himself in the environment variables.
   if (req.method === 'GET' && req.url.startsWith('/replay')) {
     const REPLAY_KEY = env('REPLAY_KEY');
     const given = new URL(req.url, 'http://localhost').searchParams.get('key') || '';
@@ -87,10 +84,7 @@ const server = http.createServer(async (req, res) => {
     if (!fs.existsSync(file)) return send(404, { status: 404 });
     const rawBody = fs.readFileSync(file, 'utf8');
     const sig = crypto.createHmac('sha256', SIGNING_SECRET).update(rawBody).digest('base64');
-    const wix = wixClient({
-  accessToken: WIX_ACCESS_TOKEN,
-  siteId: process.env.WIX_SITE_ID,
-});
+    const wix = wixClient({ accessToken: WIX_ACCESS_TOKEN, siteId: WIX_SITE_ID });
     let result;
     try {
       result = await handleTallyWebhook({
