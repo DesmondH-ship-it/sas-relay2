@@ -164,11 +164,14 @@ export async function handleTallyWebhook({ rawBody, signature, deps }) {
       emails: { items: [{ email: sub.email, primary: true }] },
       labelKeys: labels,
     };
+    let contactId;
     const existing = await wix.findContactByEmail(sub.email);
     if (existing) {
       await wix.updateContact(existing._id, info, existing.revision);
+      contactId = existing._id;
     } else {
-      await wix.createContact(info);
+      const created = await wix.createContact(info);
+      contactId = created?.contact?._id || created?._id || deps.lastCreatedContactId;
     }
     const email = renderEmail({
       group: result.group,
@@ -178,7 +181,6 @@ export async function handleTallyWebhook({ rawBody, signature, deps }) {
       target: sub.answers.strengthChosen === false ? null : sub.target,
       joint: result.joint,
     });
-    const contactId = (existing && existing._id) || deps.lastCreatedContactId;
     await wix.sendTransactionalEmail({
       contactId,
       subject: email.subject,
@@ -191,7 +193,8 @@ export async function handleTallyWebhook({ rawBody, signature, deps }) {
     log('sent', { eventId: sub.eventId, group: result.group, score: result.score });
     return { status: 200, group: result.group };
   } catch (e) {
-    log('retry', { eventId: sub.eventId, reason: 'wix' });
+    log('retry', { eventId: sub.eventId, reason: 'wix', error: e.message });
     return { status: 500 };
+  }
   }
 }
