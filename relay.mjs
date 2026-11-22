@@ -159,7 +159,7 @@ export async function handleTallyWebhook({ rawBody, signature, deps }) {
     const info = {
       name: { first: sub.name.split(/\s+/)[0] || '', last: sub.name.split(/\s+/).slice(1).join(' ') },
       emails: { items: [{ email: sub.email, primary: true }] },
-      labelKeys: labels,
+      labelKeys: { items: labels },
     };
    let contactId;
 const existing = await wix.findContactByEmail(sub.email);
