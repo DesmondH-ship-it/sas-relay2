@@ -87,7 +87,10 @@ const server = http.createServer(async (req, res) => {
     if (!fs.existsSync(file)) return send(404, { status: 404 });
     const rawBody = fs.readFileSync(file, 'utf8');
     const sig = crypto.createHmac('sha256', SIGNING_SECRET).update(rawBody).digest('base64');
-    const wix = wixClient({ accessToken: WIX_ACCESS_TOKEN });
+    const wix = wixClient({
+  accessToken: WIX_ACCESS_TOKEN,
+  siteId: process.env.WIX_SITE_ID,
+});
     let result;
     try {
       result = await handleTallyWebhook({
