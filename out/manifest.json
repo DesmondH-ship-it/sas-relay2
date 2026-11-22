@@ -1,0 +1,77 @@
+[
+  {
+    "group": "A",
+    "sample": "T-G",
+    "score": 4,
+    "subject": "Your result: Women Basics is where you start",
+    "chart": {
+      "push": 10,
+      "vertical": 7,
+      "pull": 0,
+      "goal": 0,
+      "knowledge": 3
+    },
+    "target": null,
+    "joint": true
+  },
+  {
+    "group": "B",
+    "sample": "T-H",
+    "score": 2,
+    "subject": "Your result: Basics is the right place to start",
+    "chart": {
+      "push": 0,
+      "vertical": 0,
+      "pull": 0,
+      "goal": 10,
+      "knowledge": 3
+    },
+    "target": "Planche",
+    "joint": false
+  },
+  {
+    "group": "Dual",
+    "sample": "T-E",
+    "score": 5,
+    "subject": "Your result: there is no rush, let us pick your classes together",
+    "chart": {
+      "push": 7,
+      "vertical": 10,
+      "pull": 10,
+      "goal": 10,
+      "knowledge": 0
+    },
+    "target": "Muscle-up",
+    "joint": true
+  },
+  {
+    "group": "C",
+    "sample": "T-M",
+    "score": 6,
+    "subject": "Your result: you are ready for Movement",
+    "chart": {
+      "push": 7,
+      "vertical": 7,
+      "pull": 5,
+      "goal": 5,
+      "knowledge": 3
+    },
+    "target": null,
+    "joint": false
+  },
+  {
+    "group": "D",
+    "sample": "T-D",
+    "score": 10,
+    "subject": "Your result: Movement is your next step",
+    "chart": {
+      "push": 10,
+      "vertical": 10,
+      "pull": 10,
+      "goal": 10,
+      "knowledge": 10
+    },
+    "target": "Planche",
+    "joint": false
+  }
+]

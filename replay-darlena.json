@@ -1,0 +1,26 @@
+{
+  "eventId": "replay-e5VMqdl",
+  "eventType": "FORM_RESPONSE",
+  "createdAt": "2026-11-21T06:33:59.000Z",
+  "note": "Replay of the real submission e5VMqdl, 21 Nov 14:33 HK. Option ids are synthetic; the relay maps them by position.",
+  "data": {
+    "submissionId": "e5VMqdl",
+    "formId": "4a7YVA",
+    "fields": [
+      { "key": "question_0o44G0", "type": "MULTIPLE_CHOICE", "value": ["g0"], "options": [{ "id": "g0", "text": "Female" }, { "id": "g1", "text": "Male" }, { "id": "g2", "text": "Prefer not to say" }] },
+      { "key": "question_zWVVg8", "type": "MULTIPLE_CHOICE", "value": ["j1"], "options": [{ "id": "j0", "text": "Healthy, with no significant pain or surgical history" }, { "id": "j1", "text": "Occasional tightness in shoulders, wrists or lower back, not affecting daily life" }, { "id": "j2", "text": "Surgery, or current pain (third option)" }] },
+      { "key": "question_5ENNrP", "type": "MULTIPLE_CHOICE", "value": ["p0"], "options": [{ "id": "p0", "text": "Fewer than 5 strict push-ups, or a plank under 30 seconds" }, { "id": "p1", "text": "5 to 12 strict push-ups and a plank of 30 to 60 seconds" }, { "id": "p2", "text": "13 to 19 strict push-ups with full core stability and no lower-back sagging" }, { "id": "p3", "text": "20 or more strict push-ups and comfortable with advanced core variations" }] },
+      { "key": "question_dQ77gy", "type": "MULTIPLE_CHOICE", "value": ["d0"], "options": [{ "id": "d0", "text": "Never tried, or unable to support and lower your bodyweight on your own" }, { "id": "d1", "text": "Dips with band or light foot assistance for 3 or more reps, or 1 to 2 unassisted dips" }, { "id": "d2", "text": "3 to 7 strict, full range unassisted dips" }, { "id": "d3", "text": "8 or more strict, full range unassisted dips" }] },
+      { "key": "question_YV22e6", "type": "MULTIPLE_CHOICE", "value": ["r0"], "options": [{ "id": "r0", "text": "Cannot yet do 1 unassisted pull-up, and currently working on eccentrics or Australian rows" }, { "id": "r1", "text": "1 to 4 strict, unassisted pull-ups" }, { "id": "r2", "text": "5 or more strict, unassisted pull-ups with no kipping or swinging" }] },
+      { "key": "question_D0LLbj", "type": "CHECKBOXES", "value": ["c0", "c1"], "options": [{ "id": "c0", "text": "Long-term health, posture and joint mobility, building a pain-free habit" }, { "id": "c1", "text": "Strength gains and technical skill breakthroughs, unlocking specific bodyweight movements" }] },
+      { "key": "question_lVppgp", "type": "MULTIPLE_CHOICE", "value": ["f1"], "options": [{ "id": "f0", "text": "Full-body flexibility and joint mobility" }, { "id": "f1", "text": "Foundational upper-body or lower-body strength" }, { "id": "f2", "text": "Full-body coordination and advanced bodyweight control" }] },
+      { "key": "question_R8OO2p", "type": "MULTIPLE_CHOICE", "value": ["t0"], "options": [{ "id": "t0", "text": "Strict pull-up" }, { "id": "t1", "text": "Wall or freestanding handstand" }, { "id": "t2", "text": "Muscle-up" }, { "id": "t3", "text": "Front or back lever" }, { "id": "t4", "text": "Planche" }] },
+      { "key": "question_GYMMk2", "type": "MULTIPLE_CHOICE", "value": ["k0"], "options": [{ "id": "k0", "text": "Completely new: I have not trained calisthenics before" }, { "id": "k1", "text": "Starting out: I have tried a few sessions or followed online tutorials, and I know some training terms" }, { "id": "k2", "text": "Regular: I train weekly and understand the progressions behind pull-ups, dips and handstands" }, { "id": "k3", "text": "Experienced: I can plan my own progressions for skills such as the muscle-up, planche or levers" }] },
+      { "key": "question_O8RRrp", "type": "INPUT_TEXT", "value": "Darlena" },
+      { "key": "question_VorrdE", "type": "INPUT_EMAIL", "value": "Dailycalisthenics0328@gmail.com" },
+      { "key": "question_P8oogd", "type": "CHECKBOXES", "value": ["hc"], "options": [{ "id": "hc", "text": "I agree that DAILYCALI (Hong Kong) Limited may collect my name, email address and assessment answers, including my answer about joint health, surgery history and pain. I understand this is health information. It is used to give me my result and to help a coach prepare for my first class, and for nothing else. I can ask to see, correct or delete it by emailing DesmondH@dailycalihk.com." }] },
+      { "key": "question_E8ppgq", "type": "CHECKBOXES", "value": ["mc"], "options": [{ "id": "mc", "text": "I agree that DAILYCALI may send me emails and WhatsApp messages about its classes and offers. I can unsubscribe at any time." }] },
+      { "key": "question_XOjj9d", "type": "CALCULATED_FIELDS", "value": { "score": 2, "group": "Group A", "url_base": "https://www.dailycalihk.com/sas-women-basics?utm_source=sas&utm_medium=tally&utm_campaign=sas_self_assessment&utm_content=a" } }
+    ]
+  }
+}
