@@ -138,11 +138,11 @@ export const CAPTION = {
 };
 
 export const SUBJECT = {
-  A: 'Your Assessment Result: Women Basics is where you start',
-  B: 'Your Assessment Result: Basics is the right place to start',
-  Dual: 'Your Assessment Result: there is no rush, let us pick your classes together',
-  C: 'Your Assessment Result: you are ready for Movement',
-  D: 'Your Assessment Result: Elite Movement is your next step',
+  A: 'Your Assessment Result: Women Basics is where you start | DAILYCALI',
+  B: 'Your Assessment Result: Basics is the right place to start| DAILYCALI',
+  Dual: 'Your Assessment Result: there is no rush, let us pick your classes together| DAILYCALI',
+  C: 'Your Assessment Result: you are ready for Movement| DAILYCALI',
+  D: 'Your Assessment Result: Elite Movement is your next step| DAILYCALI',
 };
 
 export const PREHEADER = {
