@@ -77,17 +77,25 @@ export function readSubmission(payload) {
 }
 
 // Wix client. Endpoints are from the design (tally-build-and-relay.md Part 3) and are NOT yet verified against live Wix.
-export function wixClient({ accessToken, siteFetch = fetch, base = 'https://www.wixapis.com' }) {
+export function wixClient({ accessToken, siteId, siteFetch = fetch, base = 'https://www.wixapis.com' }) {
   const call = async (method, path, body) => {
+    const headers = {
+      Authorization: accessToken,
+      'Content-Type': 'application/json',
+    };
+    if (siteId) headers['wix-site-id'] = siteId;
+
     const r = await siteFetch(`${base}${path}`, {
       method,
-      headers: { Authorization: accessToken, 'Content-Type': 'application/json' },
+      headers,
       body: body ? JSON.stringify(body) : undefined,
     });
-    if (!r.ok) throw new Error(`wix ${method} ${path} failed: ${r.status}`);
+    if (!r.ok) {
+      const errText = await r.text().catch(() => '');
+      throw new Error(`wix ${method} ${path} failed: ${r.status} ${errText}`);
+    }
     return r.json();
   };
-  return {
     findContactByEmail: async (email) => {
       const res = await call('POST', '/contacts/v4/contacts/query', { query: { filter: { 'info.emails.email': email } } });
       return (res.contacts || [])[0] || null;
