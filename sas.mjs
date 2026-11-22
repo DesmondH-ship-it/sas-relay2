@@ -158,30 +158,35 @@ const JOINT_CARE = 'You told us about past joint surgery or current pain. Please
 // Body paragraphs per group, from logic file section 5 (English). Merge values: first name, target, joint care, links.
 const BODY = {
   A: [
-    'Thank you for taking the two-minute assessment. Your Current Stage points to Women Basics. Our Suggestions: You do not need to be strong to start. You need a safe room and a patient coach, and that is what you get in a small group with Coach Alina.',
+    'Thank you for taking the two-minute assessment. Your Current Stage points to Women Basics. ',
+    'Our Suggestions: You do not need to be strong to start. You need a safe room and a patient coach, and that is what you get in a small group with Coach Alina.',
     'Women Basics covers the four core pillars, with a focus on hips, legs and core. Each session is 1.5 hours.',
   ],
   B: [
-    'Thank you for taking the two-minute assessment. Your Current Stage points to Basics & Conditioning. Our Suggestions: Starting from zero is completely fine here. With Coach Benjamin, you build a healthy, strong base, with joint health and injury prevention first.',
+    'Thank you for taking the two-minute assessment. Your Current Stage points to Basics & Conditioning. ',
+    'Our Suggestions: Starting from zero is completely fine here. With Coach Benjamin, you build a healthy, strong base, with joint health and injury prevention first.',
     'Basics covers Pull, Push, Core and Lower Body Mobility in 1.5 hours. Form comes first, every time.',
   ],
   Dual: [
-    'Thank you for taking the two-minute assessment. Your Current Stage shows you already have a real fitness base. What is still missing is a steady way of moving: the strength is there, but the positions are not yet repeatable every time.',
+    'Thank you for taking the two-minute assessment. Your Current Stage shows you already have a real fitness base. ',
+    'What is still missing is a steady way of moving: the strength is there, but the positions are not yet repeatable every time.',
     'Both paths work, and both sides will benefit. Our suggestion is Movement (Arm Balance) plus one Basics class for conditioning. There is no rush to decide.',
     'The best start is a conversation. Message us on WhatsApp with your result. Desmond, our founder, will personally help you choose the classes and times that fit your week. Arm Balance suits people who can manage about 5 dips, so tell us where your dips are.',
   ],
   C: [
-    'Thank you for taking the two-minute assessment. Your Current Stage shows you are ready for our Movement class. Our suggestion is your strength is ready to become control. The next step is technique - strict, repeatable movement, such as strict pull-ups and L-sit progressions.',
+    'Thank you for taking the two-minute assessment. Your Current Stage shows you are ready for our Movement class. ',
+    'Our suggestion is your strength is ready to become control. The next step is technique - strict, repeatable movement, such as strict pull-ups and L-sit progressions.',
     'Choose the focus that interests you most: Muscle Up, Arm Balance, Rings, Push or Lower Body. Keep one Basics class going for conditioning. Not sure which to pick? Message us on WhatsApp, and we will help you choose.',
   ],
   D: [
-    'Thank you for taking the two-minute assessment. Your Current Stage points to our Movement classes. You have a solid strength base, the next step: Our suggestion is connects to advanced skills, with a clear milestone path and a pace set by your progress.',
+    'Thank you for taking the two-minute assessment. Your Current Stage points to our Movement classes. ',
+    'You have a solid strength base, the next step: Our suggestion is connects to advanced skills, with a clear milestone path and a pace set by your progress.',
     'Choose the class that matches your goal: Pull Focus for Muscle Ups and Levers, Arm Balance for handstands, or Rings / Push for Planche and Iron Cross work.',
   ],
 };
 
 const CLASS_TIMES = {
-  A: 'See your roadmap and the (1) Tuesday, (2) Wednesday and (3) Saturday class times below.',
+  A: 'See your roadmap and find (1) Tuesday, (2) Wednesday and (3) Saturday class times below.',
   B: 'See your roadmap and the weekly class times below.',
   Dual: 'See your roadmap and the class times below.',
   C: 'See your roadmap and the class times below.',
@@ -229,11 +234,11 @@ ${bodyHtml}
 <tr><td style="padding:8px 32px 0 32px;" align="center">
 <p style="font-family:${FONT};margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#4C3D34;text-align:center;">${esc(CLASS_TIMES[group])}</p>
 ${btn(link, 'VIEW MY ROADMAP', '#99795E')}
-${btn(pdf, 'DOWNLOAD YOUR PDF REPORT', '#4C3D34')}
+${btn(pdf, 'DOWNLOAD YOUR PERSONALISED REPORT', '#4C3D34')}
 </td></tr>
 <tr><td style="padding:8px 32px 32px 32px;">
 <p style="font-family:${FONT};margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#4C3D34;">Ready to try it? We provide One-time Trial, with no package to buy.</p>
-<p style="font-family:${FONT};margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#4C3D34;">Questions? Directly <a href="${WHATSAPP}" style="color:#99795E;">message us (Founder) on WhatsApp</a>.</p>
+<p style="font-family:${FONT};margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#4C3D34;">Questions?  <a href="${WHATSAPP}" style="color:#99795E;">Directly Message Us (Founder) on WhatsApp</a>.</p>
 <p style="font-family:${FONT};margin:24px 0 0 0;font-size:16px;line-height:1.6;color:#4C3D34;">Desmond and the DAILYCALI</p>
 </td></tr>
 </table></td></tr></table>
